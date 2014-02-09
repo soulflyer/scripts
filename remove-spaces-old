@@ -1,0 +1,12 @@
+#!/bin/bash
+# This will remove " ([0-9])" from the end of all filenames in the current directory
+# and convert any remaining spaces to -
+
+for filename in ./*
+do
+    old=`basename "$filename"`
+    new=${old// ([0-9]*)/}
+    new=${new// /-}
+    echo "mv \"$old\" $new"
+    mv "./$old"  ./$new
+done

@@ -1,0 +1,15 @@
+#!/bin/bash
+# This will remove " ([0-9])" from the end of all filenames in the current directory
+# just leaving the number, and convert any remaining spaces to -
+# Note that it may still cause problems. Should really check for the existence of a file
+# already bearing the new name...
+
+for filename in $1/*
+do
+    old=`basename "$filename"`
+    new=${old//\(/}
+    new=${new//\)/}
+    new=${new// /-}
+    echo "mv \"$old\" $new"
+    mv "./$old"  ./$new
+done
